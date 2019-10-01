@@ -21,5 +21,11 @@ RUN pip install pipenv
 COPY ./Pipfile /usr/src/heater_control_app/Pipfile
 RUN pipenv install --skip-lock --system --dev
 
+# copy entrypoint.sh
+COPY ./entrypoint.sh /usr/src/heater_control_app/entrypoint.sh
+
 # copy project
 COPY . /usr/src/heater_control_app/
+
+# run entrypoint.sh
+ENTRYPOINT ["/usr/src/heater_control_app/entrypoint.sh"]
