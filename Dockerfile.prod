@@ -30,4 +30,6 @@ COPY . /usr/src/heater_control_app/
 # run entrypoint.sh
 ENTRYPOINT ["/usr/src/heater_control_app/entrypoint.prod.sh"]
 
+EXPOSE 8000
+
 CMD ["gunicorn", "heater_control.wsgi:application", "--bind=0.0.0.0:8000"]
