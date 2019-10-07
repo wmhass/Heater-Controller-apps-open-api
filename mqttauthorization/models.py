@@ -1,17 +1,12 @@
 from django.db import models
+from django.db.models import Q
 
-
-class MqttAcls(models.Model):
-    username = models.CharField(max_length=200)
-    pw = models.CharField(max_length=200)
+class MqttAccount(models.Model):
+    username = models.CharField(max_length=40)
+    pw = models.CharField(max_length=100)
     superuser = models.PositiveSmallIntegerField(default=0)
 
-    constraints = [
-        CheckConstraint(
-                check=~Q(superuser=0) | ~Q(superuser=1),
-                name="system_not_blank")
-    ]
-
-# class MqttAccount(models.Model):
-#     question_text = models.CharField(max_length=200)
-#     pub_date = models.DateTimeField('date published')
+class MqttAcl(models.Model):
+    username = models.CharField(max_length=40)
+    topic = models.CharField(max_length=100)
+    rw = models.PositiveSmallIntegerField(default=1)
