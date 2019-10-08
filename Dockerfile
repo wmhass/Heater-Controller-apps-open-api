@@ -2,7 +2,7 @@
 FROM python:3.7.4-alpine
 
 # set work directory
-WORKDIR /usr/src/heater_control_app
+WORKDIR /usr/src/apps_open_api
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -18,17 +18,17 @@ RUN apk update \
 # install dependencies
 RUN pip install --upgrade pip
 RUN pip install pipenv
-COPY ./Pipfile /usr/src/heater_control_app/Pipfile
+COPY ./Pipfile /usr/src/apps_open_api/Pipfile
 RUN pipenv install --skip-lock --system --dev
 
 # copy entrypoint.sh
-COPY ./entrypoint.sh /usr/src/heater_control_app/entrypoint.sh
+COPY ./entrypoint.sh /usr/src/apps_open_api/entrypoint.sh
 
 # copy project
-COPY . /usr/src/heater_control_app/
+COPY . /usr/src/apps_open_api/
 
 # run entrypoint.sh
-ENTRYPOINT ["/usr/src/heater_control_app/entrypoint.sh"]
+ENTRYPOINT ["/usr/src/apps_open_api/entrypoint.sh"]
 
 EXPOSE 8000
 

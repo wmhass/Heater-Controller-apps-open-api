@@ -2,7 +2,7 @@
 FROM python:3.7.4-alpine
 
 # set work directory
-WORKDIR /usr/src/heater_control_app
+WORKDIR /usr/src/apps_open_api
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -18,18 +18,18 @@ RUN apk update \
 # install dependencies
 RUN pip install --upgrade pip
 RUN pip install pipenv
-COPY ./Pipfile /usr/src/heater_control_app/Pipfile
+COPY ./Pipfile /usr/src/apps_open_api/Pipfile
 RUN pipenv install --skip-lock --system --dev
 
 # copy entrypoint.sh
-COPY ./entrypoint.prod.sh /usr/src/heater_control_app/entrypoint.prod.sh
+COPY ./entrypoint.prod.sh /usr/src/apps_open_api/entrypoint.prod.sh
 
 # copy project
-COPY . /usr/src/heater_control_app/
+COPY . /usr/src/apps_open_api/
 
 # run entrypoint.sh
-ENTRYPOINT ["/usr/src/heater_control_app/entrypoint.prod.sh"]
+ENTRYPOINT ["/usr/src/apps_open_api/entrypoint.prod.sh"]
 
 EXPOSE 8000
 
-CMD ["gunicorn", "heater_control.wsgi:application", "--bind=0.0.0.0:8000"]
+CMD ["gunicorn", "apps_open_api.wsgi:application", "--bind=0.0.0.0:8000"]
