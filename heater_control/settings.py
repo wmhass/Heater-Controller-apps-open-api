@@ -125,7 +125,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATIC_URL = '/appsapi_staticfiles/'
+STATIC_URL = os.environ.get('APPSAPI_STATICFILES_URLPATH', default='/appsapi_staticfiles/')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = os.environ.get('APPSAPI_MEDIAFILES_URLPATH', default='/mediafiles/')
