@@ -128,5 +128,5 @@ USE_TZ = True
 STATIC_URL = '/appsapi_staticfiles/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-MEDIA_URL = os.environ.get('APPSAPI_MEDIA_FILES_PATH', default='/mediafiles/')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
+MEDIA_URL = os.environ.get('APPSAPI_MEDIAFILES_URLPATH', default='/mediafiles/')
+MEDIA_ROOT = os.environ.get('APPSAPI_MEDIAFILES_DIRECTORY', default='/mediafiles/')
